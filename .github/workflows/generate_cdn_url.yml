@@ -1,0 +1,20 @@
+name: Generate CDN URL
+
+on:
+  push:
+    paths:
+      - '**/*'  # Este patrón incluye todos los archivos en todos los directorios
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log CDN URL
+        run: |
+          echo "Archivos modificados o añadidos:"
+          for file in $(git diff --name-only --diff-filter=A HEAD^ HEAD); do
+            echo "https://cdn.jsdelivr.net/gh/${{ github.repository }}@${{ github.ref }}/$file"
+          done
