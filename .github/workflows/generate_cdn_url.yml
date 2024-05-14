@@ -18,11 +18,11 @@ jobs:
           if git rev-parse HEAD^ > /dev/null 2>&1; then
             # Existe un commit anterior, listar archivos cambiados
             for file in $(git diff --name-only --diff-filter=A HEAD^ HEAD); do
-              echo "https://cdn.jsdelivr.net/gh/${{ github.repository }}@${{ github.ref }}/$file"
+              echo "https://cdn.jsdelivr.net/gh/${{ github.repository }}@main/$file"
             done
           else
             # No existe un commit anterior, listar todos los archivos en el repo
             for file in $(git ls-files); do
-              echo "https://cdn.jsdelivr.net/gh/${{ github.repository }}@${{ github.ref }}/$file"
+              echo "https://cdn.jsdelivr.net/gh/${{ github.repository }}@main/$file"
             done
           fi
